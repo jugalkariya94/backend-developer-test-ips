@@ -19,8 +19,11 @@ class DatabaseSeeder extends Seeder
 //            ->count(20)
 //            ->create();
 
-        $comment = Comment::factory()
-            ->count(200)
+        $user = User::factory()
+            ->count(5)
             ->create();
+//        $comment = Comment::factory()
+//            ->count(200)
+//            ->create();
     }
 }

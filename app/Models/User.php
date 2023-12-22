@@ -82,5 +82,13 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Badge::class);
     }
+
+    /**
+     * Current latest badge for the user.
+     */
+    public function getCurrentBadgeAttribute()
+    {
+        return $this->belongsToMany(Badge::class)->latest('unlocked_at')->first();
+    }
 }
 

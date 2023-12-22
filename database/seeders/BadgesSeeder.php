@@ -46,7 +46,7 @@ class BadgesSeeder extends Seeder
         foreach ($users as $user) {
             // get all the required badges for the users based on their current achievements
 
-            $badges = Badge::where('min_required_achievements', '<=', count($user->achievements))->get();
+            $badges = Badge::where('min_required_achievements', '<=', $user->achievements->count())->get();
 
             foreach ($badges as $badge) {
                 event(new BadgeUnlocked($badge->name, $user));

@@ -2,10 +2,10 @@
 
 namespace App\Listeners;
 
+use App\Enums\AchievementTypeEnum;
 use App\Events\AchievementUnlocked;
 use App\Events\CommentWritten;
 use App\Models\Achievement;
-use App\Models\Comment;
 
 class UnlockCommentAchievements
 {
@@ -28,7 +28,7 @@ class UnlockCommentAchievements
         // get total comment count for the user
         $totalCommentCount = $user->comments->count();
 
-        $achievement = Achievement::where('min_required_entries', $totalCommentCount)->where('class', Comment::class)->first();
+        $achievement = Achievement::where('min_required_entries', $totalCommentCount)->where('class', AchievementTypeEnum::COMMENT)->first();
 
         if (!empty($achievement)) {
             event(new AchievementUnlocked($achievement->name, $user));
