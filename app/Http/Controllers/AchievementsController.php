@@ -34,7 +34,7 @@ class AchievementsController extends Controller
             ],
             'current_badge' => $user->current_badge->name ?? "",
             'next_badge' => $nextBadge->name ?? '',
-            'remaing_to_unlock_next_badge' => ($nextBadge) ? ($nextBadge->min_required_achievements - $totalAchievements) : 0
+            'remaining_to_unlock_next_badge' => ($nextBadge) ? ($nextBadge->min_required_achievements - $totalAchievements) : 0
         ]);
     }
 }
