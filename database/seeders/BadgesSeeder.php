@@ -49,7 +49,7 @@ class BadgesSeeder extends Seeder
             $badges = Badge::where('min_required_achievements', '<=', count($user->achievements))->get();
 
             foreach ($badges as $badge) {
-                event( new BadgeUnlocked($badge->name, $user));
+                event(new BadgeUnlocked($badge->name, $user));
             }
         }
     }

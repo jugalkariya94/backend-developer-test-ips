@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 //            ->create();
 
         $comment = Comment::factory()
-            ->count(40)
+            ->count(200)
             ->create();
     }
 }

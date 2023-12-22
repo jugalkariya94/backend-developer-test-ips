@@ -23,6 +23,6 @@ class UnlockBadges implements ShouldQueue
     {
         //
         $badge = Badge::where('name', $event->badgeName)->first();
-        $event->user->badges()->attach($badge->id, ['unlocked_at' => now()]);
+        $event->user->badges()->syncWithoutDetaching([$badge->id => ['unlocked_at' => now()]]);
     }
 }
