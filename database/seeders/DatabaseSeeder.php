@@ -19,11 +19,20 @@ class DatabaseSeeder extends Seeder
 //            ->count(20)
 //            ->create();
 
-        $user = User::factory()
-            ->count(5)
-            ->create();
+//        $user = User::factory()
+//            ->count(20)
+//            ->create();
+//
 //        $comment = Comment::factory()
 //            ->count(200)
 //            ->create();
+//
+//        $this->call([
+//            BadgesSeeder::class,
+//            AchievementsSeeder::class,
+//        ]);
+        $user = User::factory()
+            ->count(5)
+            ->create();
     }
 }

@@ -6,6 +6,7 @@ use App\Events\AchievementUnlocked;
 use App\Events\BadgeUnlocked;
 use App\Events\CommentWritten;
 use App\Events\LessonWatched;
+use App\Listeners\AssignBadgeToNewUser;
 use App\Listeners\UnlockAchievements;
 use App\Listeners\UnlockBadges;
 use App\Listeners\UnlockCommentAchievements;
@@ -25,6 +26,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+//            AssignBadgeToNewUser::class, // Assign "Beginner" role to the new users who are just registered
         ],
         CommentWritten::class => [
             UnlockCommentAchievements::class,
