@@ -59,7 +59,7 @@ class ExampleTest extends TestCase
 
     public function test_returns_empty_arrays_for_user_with_no_achievements_and_badges()
     {
-        $user = User::find(30);
+        $user = User::factory()->create();
 
         $response = $this->get("/users/{$user->id}/achievements");
 
