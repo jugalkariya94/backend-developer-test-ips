@@ -23,16 +23,16 @@ class DatabaseSeeder extends Seeder
 //            ->count(20)
 //            ->create();
 //
-//        $comment = Comment::factory()
-//            ->count(200)
-//            ->create();
+        $comment = Comment::factory(['user_id' => 10])
+            ->count(20)
+            ->create();
 //
 //        $this->call([
 //            BadgesSeeder::class,
 //            AchievementsSeeder::class,
 //        ]);
-        $user = User::factory()
-            ->count(5)
-            ->create();
+//        $user = User::factory()
+//            ->count(5)
+//            ->create();
     }
 }

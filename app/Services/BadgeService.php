@@ -15,7 +15,7 @@ class BadgeService
         $this->model = $badge;
     }
 
-    public function getCurrentBadge(User $user): Badge
+    public function getCurrentBadge(User $user): Badge|null
     {
         return $user->current_badge;
     }
@@ -25,10 +25,10 @@ class BadgeService
         return $user->current_badge->name ?? "";
     }
 
-    public function getNextBadge(User $user)
+    public function getNextBadge(User $user): Badge|null
     {
-        $currentUserBadgeRequirements = optional($user->current_badge)->min_required_achievements ?? 0;
-        return $this->model->where('min_required_achievements', !empty($currentUserBadgeRequirements) ? '>' : 0, $currentUserBadgeRequirements)->orderBy('min_required_achievements')->first();
+        $currentUserBadgeRequirements = $user->current_badge->min_required_achievements ?? 0;
+        return $this->model->where('min_required_achievements', !empty($currentUserBadgeRequirements) ? '>' : '=', $currentUserBadgeRequirements)->orderBy('min_required_achievements')->first();
     }
 
 }

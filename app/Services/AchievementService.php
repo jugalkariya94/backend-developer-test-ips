@@ -15,6 +15,7 @@ class AchievementService
     {
         $this->model = $achievement;
     }
+
     public function getCount(User $user): int
     {
         return $user->achievements->count();
@@ -25,7 +26,7 @@ class AchievementService
         return $user->achievements->pluck('name')->toArray();
     }
 
-    public function getNextAchievement(User $user, int $currentRecordCount, string|AchievementTypeEnum $type): Achievement
+    public function getNextAchievementForClass(User $user, int $currentRecordCount, string|AchievementTypeEnum $type): Achievement|null
     {
         return $this->model->where('min_required_entries', '>', $currentRecordCount)->where('class', $type)->first();
     }
