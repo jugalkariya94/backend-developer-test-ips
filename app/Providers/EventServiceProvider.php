@@ -2,6 +2,15 @@
 
 namespace App\Providers;
 
+use App\Events\AchievementUnlocked;
+use App\Events\BadgeUnlocked;
+use App\Events\CommentWritten;
+use App\Events\LessonWatched;
+use App\Listeners\AssignBadgeToNewUser;
+use App\Listeners\UnlockAchievements;
+use App\Listeners\UnlockBadges;
+use App\Listeners\UnlockCommentAchievements;
+use App\Listeners\UnlockLessonAchievements;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +26,19 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+//            AssignBadgeToNewUser::class, // Assign "Beginner" role to the new users who are just registered
+        ],
+        CommentWritten::class => [
+            UnlockCommentAchievements::class,
+        ],
+        LessonWatched::class => [
+            UnlockLessonAchievements::class,
+        ],
+        AchievementUnlocked::class => [
+            UnlockAchievements::class,
+        ],
+        BadgeUnlocked::class => [
+            UnlockBadges::class,
         ],
     ];
 
